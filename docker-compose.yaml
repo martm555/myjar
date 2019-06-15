@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  mydb:
+    image: postgres:10
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  db-data:
+    driver: local
