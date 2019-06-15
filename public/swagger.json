@@ -54,6 +54,34 @@
           }
         }
 			},
+			"PUT": {
+				"summary": "Update a client in database",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Client UUID v4",
+						"required": true
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Returns updated client",
+						"schema": {
+							"type": "object",
+							"items": {
+								"$ref": "#/definitions/ClientModel"
+							}
+						}
+					},
+					"404": {
+						"description": "Client not found!"
+					},
+					"500": {
+						"description": "Something went wrong!"
+					}
+				}
+			},
 			"DELETE": {
 				"summary": "ClientModel",
 				"parameters": [
@@ -73,7 +101,7 @@
     }
   },
   "definitions": {
-    "ClientModel": {
+    "ClientUpdateModel": {
       "properties": {
         "firstname": {
 					"type": "string",
@@ -84,13 +112,26 @@
 					"type": "string",
 					"minLength": 1,
 					"maxLength": 64
-				},
-				"phoneNumber": {
-					"type": "string",
-					"pattern": "^\\+4407([0-9]{9,14})"
 				}
       },
-      "required": ["firstname", "surname", "phoneNumber"]
-    }
+      "required": ["firstname", "surname"]
+    },
+	  "ClientModel": {
+		  "allOf": [
+			  {
+				  "$ref": "#/definitions/ClientUpdateModel"
+			  },
+			  {
+				  "type": "object",
+				  "required": ["phoneNumber"],
+				  "properties": {
+					  "phoneNumber": {
+						  "type": "string",
+						  "pattern": "^\\+4407([0-9]{9,14})"
+					  }
+				  }
+			  }
+		  ]
+	  }
   }
 }

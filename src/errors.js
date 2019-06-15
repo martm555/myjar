@@ -30,7 +30,18 @@ class ValidationError extends Error {
 	}
 }
 
+class ClientNotFoundError extends Error {
+	constructor(data, message, statusCode = 404) {
+		super();
+		this.name = 'ClientNotFoundError';
+		this.message = message || 'Client not found';
+		this.data = data;
+		this.status = statusCode;
+	}
+}
+
 module.exports = {
+	ClientNotFoundError,
 	RequestError,
 	ValidationError,
 	NotFoundError,
