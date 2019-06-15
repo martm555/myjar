@@ -11,6 +11,10 @@ module.exports = {
 		mocha: true,
 	},
 
+	globals: {
+		afterEach: true,
+	},
+
 	plugins: [
 		'filenames',
 		'mocha',
