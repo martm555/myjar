@@ -27,6 +27,7 @@
     "config": "^3.0.1",
     "express": "^4.16.4",
     "pg-promise": "^8.6.4",
+    "pm2": "^3.5.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
     "swagger-model-validator": "^3.0.8",
