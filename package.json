@@ -13,7 +13,7 @@
     "test:integration": "export NODE_ENV=test && mocha --timeout 10000 --recursive test/integration",
     "test:e2e": "mocha --timeout 10000 --recursive test/e2e",
     "posttest": "npm run lint",
-    "lint": "eslint ./src",
+    "lint": "eslint ../**",
     "lint:fix": "npm run lint -- --fix",
     "validate-swagger": "swagger-validator -s http://localhost:2020/swagger.json"
   },
