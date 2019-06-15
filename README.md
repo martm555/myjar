@@ -11,6 +11,11 @@ $ yarn install
 ```
 * Update postgres Connection string in config (local.json)
 
+Starting database
+--------------------
+
+* Run `docker-compose up -d` to start PostgreSQL 10(requires docker compose installed in your local machine)
+
 Starting service
 --------------------
 
