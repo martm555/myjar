@@ -77,4 +77,39 @@ describe('clientsController', () => {
 			.that.is.an('string')
 			.that.equals('success')
 	});
+
+	it('#updateOne should update a client', async () => {
+		const client = {
+			id: 'someid',
+			phoneNumber: '+4407777712333',
+			firstname: 'John',
+			surname: 'Doe',
+		};
+		const req = {
+			params: {
+				clientId: client.id,
+			},
+			body: {
+				firstname: client.firstname,
+				surname: client.surname,
+			},
+		};
+
+		const validator = td.replace('../../../src/helpers/validator');
+		td.when(validator.validate(td.matchers.isA(String), req.body))
+			.thenReturn({ valid: true });
+
+		const clientModel = td.replace('../../../src/models/ClientModel');
+		td.when(clientModel.updateOne({
+			clientId: client.id,
+			...req.body,
+		})).thenResolve(client);
+
+		const ClientsController = require('../../../src/controllers/ClientsController');
+		const updateOneResult = await ClientsController.updateOne(req);
+
+		expect(updateOneResult)
+			.to.be.an('object')
+			.that.is.equal(client);
+	});
 });

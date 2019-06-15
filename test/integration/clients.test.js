@@ -1,5 +1,4 @@
 const chai = require('chai');
-
 const chaiHttp = require('chai-http');
 const rp = require('request-promise-native');
 const config = require('../helpers/config')

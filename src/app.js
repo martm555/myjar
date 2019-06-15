@@ -28,3 +28,5 @@ migration(logger);
 app.listen(config.port, () => {
 	logger.info('Service is running', config.port);
 });
+
+module.exports = app;
